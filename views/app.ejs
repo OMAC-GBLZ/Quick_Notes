@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Quick Notes</title>
+</head>
+<body>
+    <div>
+        <% if (locals.postToEdit) {%>
+                <form action="/app-update" method = "POST">
+                    <input type="text" value = "<%=postToEdit.title%>" name = "title">
+                    <textarea name ="content"><%=postToEdit.content%></textarea>
+                    <input type="text" value="<%=postToEdit.id%>" name = "id" hidden ="true">
+                    <input type="submit" value = "Save Changes">
+                </form>
+                <form action="/app" method="GET">
+                    <input type="submit" value="New note">
+                </form>
+            <% } else { %>
+        <form action="/submit" method = "POST">
+            <input type="text" placeholder="Title" name = "title">
+            <textarea name = "content" placeholder="Write your notes here.."></textarea>
+            <input type="submit" value = "Save">
+        </form>
+        <% } %>
+    </div>
+    <div>
+        <h2>My Notes</h2>
+        <% if (locals.notes) { %>
+            <% notes.forEach(note => { %>
+                <ul>
+                    <li><%=note.title%></li>
+                    <form action="/app-edit" method= "POST">
+                        <input type="text" value="<%=note.id%>" name = "id" placeholder="<%=note.id%>">
+                        <input type="submit" value = "Edit">
+                    </form>
+                    <form action="/app-delete" method= "POST">
+                        <input type="text" value="<%=note.id%>" name = "id" hidden ="true">
+                        <input type="submit" value = "Delete">
+                    </form>
+                </ul>
+           <% }); %>
+        <% } %>
+    </div>
+</body>
+</html>
