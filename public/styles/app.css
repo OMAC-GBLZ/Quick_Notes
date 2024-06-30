@@ -40,21 +40,36 @@
 .editor{
     grid-area: 2 / 2 / 3 / 3;
     height: 100%;
-    margin-left: 5%;
+    width: 90%;
     background-color: #FFF3C7;
     padding: 1%;
     border-radius: 5%;
     box-shadow: 5px 5px #FC819E;
     border: 3px solid #FC819E;
+    margin-left: 4%;
 }
 .weather{
     grid-area: 2 / 3 / 3 / -1;
+    height: 90%;
+    font-family: "Playwrite DE Grund", cursive;
+    background-color: #FEC7B4;
+    box-shadow: 3px 3px #FC819E;
+    border: 3px solid#F7418F;
+    border-radius: 1%;
+    padding: 10%;
+    margin-right: 10%;
 }
 .flex-column > *{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+.flex-column img{
+    size: 200%;
+    margin: auto;
+    display: block;
 }
 textarea{
     width: 100%;
@@ -119,9 +134,18 @@ textarea{
     font-size: 75%;
     color: #FC819E
   }
+  .weather > p{
+    color: #FFF3C7;
+    font-size: 100%;
+  }
   hr{
     border: 1px dashed #F7418F
 
+  }
+  .small-text > *{
+    font-size: 75%;
+    color: #FC819E;
+    text-align: center;
   }
   html{
     background-image: url(../images/hexagonpattern.png);

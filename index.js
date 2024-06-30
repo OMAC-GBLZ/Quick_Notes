@@ -6,6 +6,7 @@ import passport from "passport";
 import { Strategy } from "passport-local";
 import session from "express-session";
 import env from "dotenv";
+import axios from "axios";
 
 const app = express();
 const port = 4000;
@@ -36,6 +37,7 @@ const db = new pg.Client({
 db.connect();
 
 let usernotes = [];
+var weather = null;
 
 app.get("/", (req, res) => {
      passport.authenticate("local", {
@@ -67,22 +69,50 @@ app.get("/logout", (req, res)=> {
             return next(err);
         }
         usernotes = [];
+        weather = [];
         res.redirect("/");
     });
 });
 
 app.get("/app", async (req, res) => {
     if (req.isAuthenticated()){
+        const city = req.user.city;
+        try {
+            var weatherData = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.API_KEY}&q=${city}`);
+            if (weatherData.data.current){
+                weather = weatherData.data.current;
+            }
+            console.log(weatherData);
+            
+        } catch (error) {
+            console.error(error);
+        }
+        console.log(weather);
         const userid = req.user.id;
         usernotes = await db.query("SELECT * FROM notes WHERE creator = $1", [userid]);
         usernotes = usernotes.rows;
-        if (usernotes.length > 0){
+        if (usernotes.length > 0 && weather !=null){
             res.render("app.ejs", {
                 notes: usernotes,
+                weatherData: weather,
+            });
+        } else if(usernotes.length > 0){
+            res.render("app.ejs", {
+                notes: usernotes,
+                weatherError: "No weather data found for your location.",
+            });
+        }
+        else if (weather != null){
+            res.render("app.ejs", {
+                weatherData: weather,
             });
         } else {
-            res.render("app.ejs");
+            res.render("app.ejs", {
+                weatherError: "No weather data found for your location.",
+            });
         }
+            
+        
     }
     else{
         res.redirect("/login");
@@ -138,10 +168,20 @@ app.post("/app-edit", (req, res)=>{
     const postid = parseInt(req.body.id);
     const searchedIndex = usernotes.findIndex((note) => note.id === postid);
     console.log(usernotes[searchedIndex]);
-    res.render("app.ejs", {
-        postToEdit: usernotes[searchedIndex],
-        notes: usernotes,
-    });
+    if (weather != null){
+        res.render("app.ejs", {
+            postToEdit: usernotes[searchedIndex],
+            notes: usernotes,
+            weatherData: weather,
+        });
+    } else {
+        res.render("app.ejs", {
+            postToEdit: usernotes[searchedIndex],
+            notes: usernotes,
+            weatherError: "No weather data found for your location.",
+        });
+         }
+    
 });
 
 app.post("/app-update", async (req, res)=> {

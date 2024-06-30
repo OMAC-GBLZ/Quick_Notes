@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 300px;
+  height: 450px;
   width: 600px;
   border-radius: 10px;
 }
@@ -28,7 +28,7 @@ background-image: url(../images/hexagonpattern.png);
   background-color: #FC819E;
   border-radius: 5px;
   color: #FFF3C7;
-  font-family: "Playwrite ES", cursive;
+  font-family: "Playwrite DE Grund", cursive;
   border: 0;
   box-shadow: 3px 3px #F7418F;
 }
@@ -41,6 +41,20 @@ background-image: url(../images/hexagonpattern.png);
   transform: translate(-50%, -50%);
 }
 .label{
-  font-family: "Playwrite ES", cursive;
+  font-family: "Playwrite DE Grund", cursive;
+  color: #F7418F;
+  font-size: 1.5rem;
+}
+.textbox{
+  border: solid #FEC7B4 1px;
+  outline: none;
+  width: 80%;
+  padding: 3%;
+  font-size: 1rem;
+  margin-bottom: 5%;
+  height: 5%;
+  background-color: #FFF3C7;
+  font-family: "Playwrite DE Grund", cursive;
+  box-shadow: 3px 3px #FEC7B4;
   color: #F7418F;
 }

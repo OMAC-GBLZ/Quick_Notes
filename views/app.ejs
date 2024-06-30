@@ -46,6 +46,25 @@
         <% } %>
         </div>
     </div>
+    <div class = "weather flex-column">
+        <h2>Weather</h2>
+        <% if (locals.weatherData) {%>
+            <img src="<%=weatherData.condition.icon %>" alt="<%=weatherData.condition.text%> Weather Icon">
+            <p><%=weatherData.condition.text%></p>
+            <p><%=weatherData.temp_c%>°C</p>
+            <p>Rainfall: <%=weatherData.precip_mm%>mm</p>
+            <p>Wind Speed: <%=weatherData.wind_kph %> km/h</p>
+            <p>Gusts up to <%=weatherData.gust_kph%> km/h</p>
+            <p>UV Index: <%=weatherData.uv%></p>
+            <div class="small-text">
+                <p>Last Updated: <%=weatherData.last_updated%></p>
+                <a href="https://www.weatherapi.com/">Brought to you by www.weatherapi.com</a>
+            </div>
+            
+            <% } else if (locals.weatherError) {%>
+                <p><%=weatherError%></p>
+                <% } %>
+    </div>
 </section>
 </body>
 </html>
