@@ -46,13 +46,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res)=>{
-    //add logic to redirect to notes page if logged in already
+    if (req.isAuthenticated()){
+        res.redirect("/app")
+    } else {
     res.render("login.ejs");
+    }
 });
 
 app.get("/register", (req, res) => {
-    //add logic to redirect to notes page if logged in already
+    if (req.isAuthenticated()){
+        res.redirect("/app")
+    } else {
     res.render("register.ejs");
+    }
 });
 
 app.get("/logout", (req, res)=> {
@@ -60,6 +66,7 @@ app.get("/logout", (req, res)=> {
         if (err){
             return next(err);
         }
+        usernotes = [];
         res.redirect("/");
     });
 });

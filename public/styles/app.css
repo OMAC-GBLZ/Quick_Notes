@@ -1,0 +1,128 @@
+.header{
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    grid-template-rows: 1fr;
+    width: auto;
+}
+.middle{
+    grid-area: 1 / 2 / 2 / 3;
+    height: 100%;
+}
+.right{
+    grid-area: 1 / 3 / 2 / -1;
+    height: 100%;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#main{
+    display: grid;
+    grid-template-columns: 1.5fr 7fr 2fr;
+    grid-template-rows: 8fr;
+    width: auto;
+}
+.notes-tab{
+    grid-area: 2 / 1 / 3 / 2;
+    height: 90%; 
+    max-height: 70vh;
+    font-family: "Playwrite DE Grund", cursive;
+    background-color: #FEC7B4;
+    box-shadow: 3px 3px #FC819E;
+    border: 3px solid#F7418F;
+    border-radius: 1%;
+    padding: 10%;
+    margin-left: 10%;
+    overflow-y: auto;
+    scrollbar-color: #FFF3C7 #FEC7B4;
+}
+.editor{
+    grid-area: 2 / 2 / 3 / 3;
+    height: 100%;
+    margin-left: 5%;
+    background-color: #FFF3C7;
+    padding: 1%;
+    border-radius: 5%;
+    box-shadow: 5px 5px #FC819E;
+    border: 3px solid #FC819E;
+}
+.weather{
+    grid-area: 2 / 3 / 3 / -1;
+}
+.flex-column > *{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+textarea{
+    width: 100%;
+    height: 50vh;
+    padding: 3%;
+    box-sizing:border-box;
+    font-size: 1rem;
+    resize: none;
+    border: 0;
+    outline: none;
+    margin-top: 2%;
+    background-color: #FFF3C7;
+    font-family: "Playwrite DE Grund", cursive;
+}
+.btn{
+    margin: 20px;
+    height: 60px;
+    width: 120px;
+    background-color: #FC819E;
+    border-radius: 5px;
+    color: #FFF3C7;
+    font-family: "Playwrite DE Grund", cursive;
+    border: 0;
+    box-shadow: 3px 3px #F7418F;
+  }
+  .tab-item{
+    display: flex;
+    align-items: center;
+    gap: 5%;
+  }
+  .tab-item button{
+    border: 0;
+    background: none;
+  }
+  h1{
+    color: #FC819E;
+    font-family: "Playwrite ES", cursive;
+    text-shadow: 3px 0 #F7418F;
+    font-size: 3rem;
+  }
+  .textbox{
+    border: 0;
+    outline: none;
+    width: 80%;
+    padding: 3%;
+    font-size: 16px;
+    height: 100%;
+    background-color: #FFF3C7;
+    font-family: "Playwrite DE Grund", cursive;
+  }
+  h2{
+    color: #FFF3C7;
+    font-family: "Playwrite ES", cursive;
+    text-shadow: 3px 0 #FC819E;
+    font-size: 1.8rem;
+  }
+  h4{
+    margin-right: 10%;
+    color: #F7418F
+  }
+  p{
+    font-size: 75%;
+    color: #FC819E
+  }
+  hr{
+    border: 1px dashed #F7418F
+
+  }
+  html{
+    background-image: url(../images/hexagonpattern.png);
+  }

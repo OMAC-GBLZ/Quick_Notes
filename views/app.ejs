@@ -1,47 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Quick Notes</title>
-</head>
-<body>
-    <div>
-        <% if (locals.postToEdit) {%>
-                <form action="/app-update" method = "POST">
-                    <input type="text" value = "<%=postToEdit.title%>" name = "title">
-                    <textarea name ="content"><%=postToEdit.content%></textarea>
-                    <input type="text" value="<%=postToEdit.id%>" name = "id" hidden ="true">
-                    <input type="submit" value = "Save Changes">
-                </form>
-                <form action="/app" method="GET">
-                    <input type="submit" value="New note">
-                </form>
-            <% } else { %>
-        <form action="/submit" method = "POST">
-            <input type="text" placeholder="Title" name = "title">
-            <textarea name = "content" placeholder="Write your notes here.."></textarea>
-            <input type="submit" value = "Save">
-        </form>
-        <% } %>
+<%-include('./partials/header.ejs');%>
+<section id = "main">
+    <div class = "editor">
+        <div class = "flex-column">
+            <% if (locals.postToEdit) {%>
+                    <form action="/app-update" method = "POST">
+                        <input class = "textbox" type="text" value = "<%=postToEdit.title%>" name = "title">
+                        <textarea name ="content"><%=postToEdit.content%></textarea>
+                        <input type="text" value="<%=postToEdit.id%>" name = "id" hidden="true">
+                        <div class = "container">
+                            <input class = "btn" type="submit" value = "Save Changes">
+                        </form>
+                        <form action="/app" method="GET">
+                            <input class = "btn" type="submit" value="New note">
+                        </div>    
+                    </form>
+                <% } else { %>
+            <form action="/submit" method = "POST">
+                <input class = "textbox" type="text" placeholder="Title" name = "title">
+                <textarea name = "content" placeholder="Write your notes here.."></textarea>
+                <input class = "btn" type="submit" value = "Save">
+            </form>
+            <% } %>
+        </div>
     </div>
-    <div>
+    <div class="notes-tab">
+        <div>
         <h2>My Notes</h2>
         <% if (locals.notes) { %>
             <% notes.forEach(note => { %>
-                <ul>
-                    <li><%=note.title%></li>
-                    <form action="/app-edit" method= "POST">
-                        <input type="text" value="<%=note.id%>" name = "id" placeholder="<%=note.id%>">
-                        <input type="submit" value = "Edit">
-                    </form>
-                    <form action="/app-delete" method= "POST">
-                        <input type="text" value="<%=note.id%>" name = "id" hidden ="true">
-                        <input type="submit" value = "Delete">
-                    </form>
-                </ul>
+            <div class="tab-item">
+                <h4><%=note.title%></h4>
+                <form action="/app-edit" method= "POST">
+                    <input type="text" value="<%=note.id%>" name = "id" placeholder="<%=note.id%>" hidden = "true">
+                    <button type="submit"><img src="/assets/pencil-square.svg" alt=""></button>
+                </form>
+                <form action="/app-delete" method= "POST">
+                    <input type="text" value="<%=note.id%>" name = "id" hidden ="true">
+                    <button type="submit"><img src="/assets/trash3.svg" alt=""></button>
+                </form>
+            </div>
+            <%let summary = note.content.slice(0, 55).trim() + "...";%>
+                <p><%=summary%></p>
+                <hr><br>
            <% }); %>
         <% } %>
+        </div>
     </div>
+</section>
 </body>
 </html>

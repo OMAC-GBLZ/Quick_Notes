@@ -1,0 +1,46 @@
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 600px;
+  border-radius: 10px;
+}
+h1{
+  color: #FC819E;
+  font-family: "Playwrite ES", cursive;
+  text-shadow: 3px 0 #F7418F;
+  font-size: 5rem;
+}
+body{
+background-image: url(../images/hexagonpattern.png);
+}
+.home-buttons{
+  display: flex;
+  padding: 5px;
+}
+.btn{
+  margin: 20px;
+  height: 60px;
+  width: 120px;
+  background-color: #FC819E;
+  border-radius: 5px;
+  color: #FFF3C7;
+  font-family: "Playwrite ES", cursive;
+  border: 0;
+  box-shadow: 3px 3px #F7418F;
+}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.label{
+  font-family: "Playwrite ES", cursive;
+  color: #F7418F;
+}
