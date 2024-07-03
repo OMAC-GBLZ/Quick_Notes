@@ -69,7 +69,7 @@ app.get("/logout", (req, res)=> {
             return next(err);
         }
         usernotes = [];
-        weather = [];
+        weather = null;
         res.redirect("/");
     });
 });
@@ -157,7 +157,12 @@ app.post("/register", async (req, res) => {
 
 app.post("/submit", async (req, res)=>{
     console.log(req.user.id);
-    const title = req.body.title;
+    if (req.body.title == ""){
+        var title = "Untitled"
+    }
+    else{
+        var title = req.body.title;
+    }
     const content = req.body.content;
     const userid = req.user.id;
     await db.query("INSERT INTO notes (title, content, creator) VALUES ($1, $2, $3)", [title, content, userid]);
